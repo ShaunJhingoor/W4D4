@@ -28,7 +28,7 @@ end
 
 
 #whole thing is O(n^2): quadratic
-def largest_contiguous_subsum(list_b) #O(n): linear
+def largest_contiguous_subsum_long(list_b) #O(n): linear
     another_arr = [] 
     sub_arrays = sub_arrays(list_b)
     sub_arrays.each do |array|
@@ -47,15 +47,14 @@ def sub_arrays(list) #O(n^2)
     arr 
 end 
 
-list_b = [5, 3, -7]
-p sub_arrays(list_b) # => 8
-p largest_contiguous_subsum(list_b) # => 8
+def largest_contiguous_subsum(list) #O(n): linear
+    current_sum =0 
+    largest_sum = list.first
+    list.each do |ele|
+        current_sum += ele 
+        largest_sum = current_sum if largest_sum < current_sum
+    end
+    largest_sum
+end
 
-# # possible sub-sums
-# [5]           # => 5
-# [5, 3]        # => 8 --> we want this one
-# [5, 3, -7]    # => 1
-# [3]           # => 3
-# [3, -7]       # => -4
-# [-7]          # => -7
 
